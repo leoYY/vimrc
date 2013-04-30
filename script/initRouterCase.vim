@@ -1,0 +1,25 @@
+function InitRouterCase()
+    call setline(1,"# -*- coding:gbk -*-") 
+    call append(line("."),"")
+    call append(line(".")+1,"from all_import import *")
+    call append(line(".")+2,"")
+    let s:filename = strpart(expand("%"),strridx(expand("%"),"/")+1,strlen(expand("%")))
+    let s:class = strpart(s:filename,0,stridx(s:filename,"."))
+    call append(line(".")+3,"class ".s:class."(RouterCase):")
+    call append(line(".")+4,"        \"\"\"\"\"\"")    
+    call append(line(".")+5,"        OWNER=\"\"")
+    call append(line(".")+6,"        quick=\[\'ALL\'\]")
+    call append(line(".")+7,"        slow=\[\]")
+    call append(line(".")+8,"        daily=\[\]")
+    call append(line(".")+9,"        ignorelist=\[\]")
+    call append(line(".")+10,"")
+    call append(line(".")+11,"        def setUp\(self\):")
+    call append(line(".")+12,"")     
+    let s:funs = strpart(s:class,stridx(s:class,"t")+1,strlen(s:class))
+    call append(line(".")+13,"        def test_".s:funs."\(self\):")
+    call append(line(".")+14,"        \"\"\"\"\"\"")
+    call append(line(".")+15,"        self.t.sendReq()")
+    echo "you are using vimscript \<initRouterCase\> you can cut it by edit vimrc"
+endfunction
+
+
