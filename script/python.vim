@@ -9,6 +9,7 @@ function InitPythonClass()
        let line = substitute(line,"@USER",strpart(user,-1,strlen(user)),"g") 
        let line = substitute(line,"@DATE",l:date,"g")
        let line = substitute(line,"@FILE_NAME",expand("%:t"),"g")
+       let line = substitute(line, "@FILE", expand("%:t:r"), "g")
        call add(l:word,line)
     endfor
     call append(line("."),l:word)
