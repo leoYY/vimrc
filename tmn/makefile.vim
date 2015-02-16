@@ -6,6 +6,10 @@
 CC=gcc
 XX=g++
 
+CXXFLAGS=-Wall \
+    -O \
+    -g
+
 CFLAGS=-Wall\
     -O\
     -g
@@ -19,15 +23,16 @@ LIB=-l
 # lib path 
 LIBPATH=-L 
 
-# .o store path
-OBJPATH=
-TARGET=
-
-default: $(TARGET)
-
-$(TARGET):
+%.o:%.cpp
+    $(XX) $(CXXFLAGS) $(INCLUDE) -c $^ -o $@
+%.o:%.c
+    $(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
+%.o:%.cc
+    $(XX) $(CXXFLAGS) $(INCLUDE) -c $^ -o $@
+    
+default: 
 
 .PHONY: clean
 clean:
-    @rm -rf $(OBJPATH)/*.o $(TARGET)    
+    @rm 
     @echo "clean up"
