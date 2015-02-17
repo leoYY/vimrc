@@ -61,11 +61,21 @@ define plist
     set $head = &($arg0._M_impl._M_node)
     set $cur = $arg0._M_impl._M_node._M_next
     set $size = 0
+    set $beg = 0
+    set $end = -1
+    if $argc == 3
+      set $beg = $arg2
+    end
+    if $argc == 4
+      set $end = $arg3
+    end
+
     while $cur != $head
-      if $argc >= 2
+      if $beg <= $size 
+        if $end == -1 || $size < $end
           printf "index[%u]", $size    
           p *($arg1*)($cur + 1)
-      end
+        end 
       set $cur = $cur._M_next
       set $size++
     end
