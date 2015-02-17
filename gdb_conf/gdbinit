@@ -1,0 +1,11 @@
+# turn on object inheritance info printable
+set p obj on
+# turn on print array in different line
+set p array on
+# set scheduler-locking off|on|step
+# debug in multi threads:
+# off  ---- not lock any threads
+# on   ---- only current thread will run
+# step ---- until next
+# more info show help set scheduler-locking
+set scheduler-locking on
