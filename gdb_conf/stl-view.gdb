@@ -24,20 +24,20 @@ define pvector
     set $end = $arg2
   end
   
-  if $beg > 0 || $end >= $size || $beg > $end
+  if $beg > 0 || $end > $size || $beg > $end
     help pvector
   else 
     set $i = $beg
     while $i < $end
       printf "index[%u]: ", $i
-      p *($arg0._M_impl._M_start + $i)
+      print *($arg0._M_impl._M_start + $i)
       set $i++
     end
   end
   if $argc > 0 
-    printf "vector size = %u", $size
-    printf "       cap  = %u", $capacity
-    print  "Element :"
+    printf "vector size = %u\n", $size
+    printf "       cap  = %u\n", $capacity
+    printf  "Element "
     whatis $arg0._M_impl._M_start
   end
 end
