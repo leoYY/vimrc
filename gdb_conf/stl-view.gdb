@@ -48,3 +48,38 @@ document pvector
   pvector v from      ---- print vector info and element [from, size)
   pvector v from to   ---- print vector info and element [from, to)
 end
+
+
+#
+#   STL list print func
+#
+
+define plist 
+  if $argc == 0  
+    help plist
+  else 
+    set $head = &($arg0._M_impl._M_node)
+    set $cur = $arg0._M_impl._M_node._M_next
+    set $size = 0
+    while $cur != $head
+      if $argc >= 2
+          printf "index[%u]", $size    
+          p *($arg1*)($cur + 1)
+      end
+      set $cur = $cur._M_next
+      set $size++
+    end
+    printf "List size = %u \n", $size
+    if $argc < 2
+      printf "Element "
+      whatis $arg0
+    end
+  end
+end
+
+document plist
+  Prints std::list<T> info
+  plist l           ---- print list info 
+  plist l T         ---- print list info and elements [0, size)
+  plist l T from to ---- print list info and element [from, to)
+end
