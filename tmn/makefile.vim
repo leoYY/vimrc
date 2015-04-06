@@ -23,6 +23,13 @@ LIB=-l
 # lib path 
 LIBPATH=-L 
 
+BIN=
+
+default: all
+
+all: $(BIN)
+
+
 %.o:%.cpp
     $(XX) $(CXXFLAGS) $(INCLUDE) -c $^ -o $@
 %.o:%.c
@@ -30,9 +37,11 @@ LIBPATH=-L
 %.o:%.cc
     $(XX) $(CXXFLAGS) $(INCLUDE) -c $^ -o $@
     
-default: 
-
 .PHONY: clean
 clean:
-    @rm 
+    @rm -rf $(BIN)
     @echo "clean up"
+    
+.PHONY: test
+test:  
+    @echo "test done"
