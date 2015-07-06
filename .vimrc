@@ -15,7 +15,7 @@ set backspace=indent,eol,start
 syntax on
 "sy on
 colorscheme desert
-"ĞŞ¸ÄÅäÖÃ
+"ä¿®æ”¹é…ç½®
 nmap <F1> :tabnew ~/.vimrc<cr>
 
 "echo  $LANG
@@ -28,24 +28,24 @@ noremap <S-k> gk
 "noremap <S-h> g0
 "noremap <S-l> g$
 
-"Ìø×ª´°¿Ú·½Ãæ
+"è·³è½¬çª—å£æ–¹é¢
 nmap <C-j> <C-W>j
 nmap <C-h> <C-W>h
 nmap <C-k> <C-W>k
 nmap <C-l> <C-W>l
-"µ÷Õû´°¿Ú
+"è°ƒæ•´çª—å£
 "nmap <C-=> <C-W>+
 "nmap <C--> <C-W>-
 "nmap <C--> :res-1 <cr>
 "nmap <C-=> :res+1 <cr>
 "nmap <s-=> :resize -10 <cr>
 
-"tab ²Ù×÷
+"tab æ“ä½œ
 nmap <C-N> :tabnew .<cr>
 nmap <s-h> :tabprevious <cr>
 nmap <s-l> :tabnext <cr>
 
-"ÒÆ¶¯´°¿Ú
+"ç§»åŠ¨çª—å£
 "nmap <s-Down> <C-W>J
 "nmap <s-Left> <C-W>H
 "nmap <s-Right> <C-W>L
@@ -53,11 +53,11 @@ nmap <s-l> :tabnext <cr>
 
 
 
-"¼ÓÔØ×Ô¶¨Òå½Å±¾
+"åŠ è½½è‡ªå®šä¹‰è„šæœ¬
 source $HOME/.vim/script/python.vim
 autocmd bufnewfile *.py call InitPythonClass()
     
-"ÏÔÊ¾×´Ì¬ĞÅÏ¢
+"æ˜¾ç¤ºçŠ¶æ€ä¿¡æ¯
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%o4v][%p%%]\ [LEN=%L]
 set laststatus=2
 let Tlist_Show_One_File=1
@@ -103,3 +103,7 @@ autocmd BufNewFile *.cpp call common#InitCpp()
 autocmd BufNewFile *.h call common#InitHead()
 autocmd BufNewFile *.c call common#InitCpp()
 autocmd BufNewFile Makefile call common#InitMakefile()
+
+set encoding=utf-8
+set fileencoding=ucs-bom,utf-8,cp936
+set termencoding=utf-8
