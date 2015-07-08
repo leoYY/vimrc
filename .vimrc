@@ -66,8 +66,8 @@ let Tlist_Exit_OnlyWindow=1
 "tlist
 map <C-c> :Tlist <cr>
 
-let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap wm :WMToggle<cr>
+"let g:winManagerWindowLayout='FileExplorer|TagList'
+"nmap wm :WMToggle<cr>
 
 "cscope 
 set cscopequickfix=s-,c-,d-,i-,t-,e- 
