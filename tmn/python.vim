@@ -7,6 +7,8 @@
 """
 
 import sys,os,getopt,logging,traceback
+# import search path
+# sys.path.append() 
 
 # ================ log ===============
 LOGFILE="./@FILE.log"
@@ -41,8 +43,12 @@ def usage():
 def main():
     try:
         opts,args = getopt.getopt(sys.argv[1:],"vh",["version","help"])
-    except GetoptError:
+    except getopt.GetoptError:
         sys.exit(2)
+    for opt in opts :
+        if opt[0] == "--help" :
+            usage()
+            return 0
 
 if __name__ == "__main__":
     try :
