@@ -8,7 +8,7 @@ install step:
 
     cd src/  
     
-    ./configure  --with-compiledby="TaoBeier" --with-features=huge --enable-pythoninterp=yes --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu  --enable-cscope --enable-multibyte --enable-fail-if-missing  
+    ./configure --with-features=huge --enable-pythoninterp=yes --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu  --enable-cscope --enable-multibyte --enable-fail-if-missing  
     make -j4 && make install
 
 其中python2.7/config-这个需要安装libpython2.7， 以及python-dev (ps: debian下)  
