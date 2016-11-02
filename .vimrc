@@ -1,4 +1,3 @@
-"default set 
 set exrc "support dynamic vimrc
 set nu
 set vb
@@ -105,5 +104,5 @@ autocmd BufNewFile *.c call common#InitCpp()
 autocmd BufNewFile Makefile call common#InitMakefile()
 
 set encoding=utf-8
-set fileencoding=ucs-bom,utf-8,cp936
+set fileencoding=utf-8
 set termencoding=utf-8
