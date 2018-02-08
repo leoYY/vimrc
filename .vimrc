@@ -68,13 +68,28 @@ map <C-c> :Tlist <cr>
 "let g:winManagerWindowLayout='FileExplorer|TagList'
 "nmap wm :WMToggle<cr>
 
-"cscope 
-set cscopequickfix=s-,c-,d-,i-,t-,e- 
-nmap ss : cs find s <C-R>=expand("<cword>")<CR><CR>:cw<CR> 
+"NERDTree
+"nmap <C-d> :NERDTreeToggle <CR>
+
+"cscope
+"cscope -Rbq -I dir(find include files) -P path
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+" find c symbol
+nmap ss : cs find s <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+" find function definition
 nmap sg : cs find g <C-R>=expand("<cword>")<CR><CR>
+" find called tree
 nmap sc : cs find c <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+" find string
 nmap st : cs find t <C-R>=expand("<cword>")<CR><CR>
+" find this functinos called functions
 nmap sd : cs find d <C-R>=expand("<cword>")<CR><CR>
+" find which files #include this
+nmap si : cs find i <C-R>=expand("<cword>")<CR><CR>
+" find file
+nmap sf : cs find f <C-R>=expand("<cword>")<CR><CR>
+" find egrep
+nmap se : cs find e <C-R>=expand("<cword>")<CR><CR>
 
 "plugin xml.vim  needs 
 :filetype plugin indent on
