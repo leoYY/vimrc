@@ -45,7 +45,7 @@ def main(argv):
     except gflags.FlagsError as e:
         print "%s \\n Usage: %s ARGS\\n %s"%(e, sys.argv[0], FLAGS)
         sys.exit(1)
-    log.InitLog()
+
 
 if __name__ == "__main__":
     main(sys.argv)
