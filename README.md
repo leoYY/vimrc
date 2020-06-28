@@ -59,9 +59,9 @@ def Settings(**kwargs):
 ```
 
 
-TODO add Plug 'dense-analysis/ale'
-TODO add Plug 'Yggdroot/LeaderF'
-TODO add Plug 'Shougo/echodoc.vim'
-TODO add Plug 'octol/vim-cpp-enhanced-highlight'
+TODO add Plug 'dense-analysis/ale'  
+TODO add Plug 'Yggdroot/LeaderF'   
+TODO add Plug 'Shougo/echodoc.vim'   
+TODO add Plug 'octol/vim-cpp-enhanced-highlight'   
 
-TODO add skywind3000/asyncrun.vim 
+TODO add skywind3000/asyncrun.vim   
