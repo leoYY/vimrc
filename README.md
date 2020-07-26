@@ -59,7 +59,8 @@ def Settings(**kwargs):
 ```
 
 
-TODO add Plug 'dense-analysis/ale'   语法检查   
+
+add Plug 'dense-analysis/ale'  //直接安装即可 语法检查   
 TODO add Plug 'Yggdroot/LeaderF'     弹窗式搜索   
 TODO add Plug 'Shougo/echodoc.vim'   函数签名提示   
 TODO add Plug 'octol/vim-cpp-enhanced-highlight'       
