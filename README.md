@@ -61,8 +61,8 @@ def Settings(**kwargs):
 
 
 add Plug 'dense-analysis/ale'  //直接安装即可 语法检查   
-TODO add Plug 'Yggdroot/LeaderF'     弹窗式搜索   
-TODO add Plug 'Shougo/echodoc.vim'   函数签名提示   
+add Plug 'Yggdroot/LeaderF'     弹窗式搜索   
+add Plug 'Shougo/echodoc.vim'   // 函数签名提示    let g:echodoc#enable_at_startup = 1    
 TODO add Plug 'octol/vim-cpp-enhanced-highlight'    
 TODO add Plug 'ludovicchabant/vim-gutentags'  用于自动更新管理 ctags
 TODO add skywind3000/asyncrun.vim     
