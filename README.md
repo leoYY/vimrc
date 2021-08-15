@@ -25,7 +25,7 @@ https://github.com/ycm-core/YouCompleteMe
 
 git submodule update --init --recursive
 
-python3 install.py --clang-compiler
+python3 install.py --clang-completer
 
 查找系统include文件
 echo | clang -v -E -x c++ -;
