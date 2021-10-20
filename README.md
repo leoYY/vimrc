@@ -58,6 +58,22 @@ def Settings(**kwargs):
 ]}
 ```
 
+#### YouComplelteMe 的一些用法记录
+
+goto subcommands 
+
+```
+:YcmCompleter GoToInclude 
+```
+
+这个配置依赖配置了.ycm_extra_conf.py，其中上面介绍的是默认加载的配置了系统include等路径信息，对于平时的cmake项目无法查找对应的include路径。
+
+```
+// CMakeLists.txt 
+set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
+// 该配置会生成 compile_commands.json  "compilation_database_folder = ''" 
+```
+配置.ycm_extra_conf.py 中 compilation_database_folder 指向上面的build目录即可。
 
 
 add Plug 'dense-analysis/ale'  //直接安装即可 语法检查   
