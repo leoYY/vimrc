@@ -75,6 +75,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
 ```
 配置.ycm_extra_conf.py 中 compilation_database_folder 指向上面的build目录即可。
 
+### 其他
 
 add Plug 'dense-analysis/ale'  //直接安装即可 语法检查   
 add Plug 'Yggdroot/LeaderF'     弹窗式搜索   
