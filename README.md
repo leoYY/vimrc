@@ -25,7 +25,9 @@ https://github.com/ycm-core/YouCompleteMe
 
 git submodule update --init --recursive
 
-python3 install.py --clang-completer
+// rustup install rust-analyzer
+
+python3 install.py --clangd-completer --rust-completer
 
 查找系统include文件
 echo | clang -v -E -x c++ -;
