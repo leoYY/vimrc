@@ -11,10 +11,10 @@ install step:
     ./configure --with-features=huge --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu --enable-python3interp --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu  --enable-cscope --enable-multibyte --enable-fail-if-missing  
     make -j4 && make install
 
+MacOS下仅安装python3支持即可
+
 其中python2.7/config-这个需要安装libpython2.7， 以及python-dev (ps: debian下)  
 yum install ncurses-devel   
-
-
 
 ### YouCompleteMe 安装
 
@@ -25,7 +25,7 @@ https://github.com/ycm-core/YouCompleteMe
 
 git submodule update --init --recursive
 
-python3 install.py --clang-compiler
+python3 install.py --clang-completer
 
 查找系统include文件
 echo | clang -v -E -x c++ -;
@@ -58,7 +58,24 @@ def Settings(**kwargs):
 ]}
 ```
 
+#### YouComplelteMe 的一些用法记录
 
+goto subcommands 
+
+```
+:YcmCompleter GoToInclude 
+```
+
+这个配置依赖配置了.ycm_extra_conf.py，其中上面介绍的是默认加载的配置了系统include等路径信息，对于平时的cmake项目无法查找对应的include路径。
+
+```
+// CMakeLists.txt 
+set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
+// 该配置会生成 compile_commands.json  "compilation_database_folder = ''" 
+```
+配置.ycm_extra_conf.py 中 compilation_database_folder 指向上面的build目录即可。
+
+### 其他
 
 add Plug 'dense-analysis/ale'  //直接安装即可 语法检查   
 add Plug 'Yggdroot/LeaderF'     弹窗式搜索   
