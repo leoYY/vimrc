@@ -33,28 +33,29 @@ Plug 'Shougo/echodoc.vim'
 call plug#end()
 
 " For ale
-"let g:ale_linters_explicit = 1
-"let g:ale_completion_delay = 500
-"let g:ale_echo_delay = 20
-"let g:ale_lint_delay = 500
-"let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-"let g:ale_lint_on_text_changed = 'normal'
+" disable ale
+"let g:ale_disable_lsp = 1
+
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
 "let g:ale_lint_on_insert_leave = 1
 "let g:airline#extensions#ale#enabled = 1
 "
-"let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-"let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-"let g:ale_c_cppcheck_options = ''
-"let g:ale_cpp_cppcheck_options = ''
-"let g:ale_sign_error = "\ue009\ue009"
-"hi! clear SpellBad
-"hi! clear SpellCap
-"hi! clear SpellRare
-"hi! SpellBad gui=undercurl guisp=red
-"hi! SpellCap gui=undercurl guisp=blue
-"hi! SpellRare gui=undercurl guisp=magenta
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+let g:ale_sign_error = "\ue009\ue009"
 
 " For YCM
+" CCLS need config files in prj root, ln -s should be fine.
+" echo \"%compile_commands.json\" > .ccls-root 
+" install brew install ccls
+let g:ycm_language_server = [{'name' : 'ccls', 'cmdline' : ['ccls'], 'filetypes': ['c', 'cpp', 'objc', 'objcpp'], 'project_root_files': ['.ccls-root', 'compile_commands.json']}]
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/.cpp_ycm_extra_conf.py'
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
@@ -113,6 +114,7 @@ nmap <s-l> :tabnext <cr>
     
 "显示状态信息
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%o4v][%p%%]\ [LEN=%L]
+
 set laststatus=2
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
@@ -125,6 +127,14 @@ map <C-c> :Tlist <cr>
 
 "NERDTree
 "nmap <C-d> :NERDTreeToggle <CR>
+"
+map <C-X> :Vex <cr>
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+let g:netrw_sort_by = 'time'
+let g:netrw_sort_direction = 'reverse'
+let g:netrw_browse_split = 4
 
 "cscope
 "cscope -Rbq -I dir(find include files) -P path
@@ -177,4 +187,5 @@ set encoding=utf-8
 set fileencoding=utf-8
 set termencoding=utf-8
 
-
+let g:pymode_python = 'python3'
+let g:pymode_rope = 0
