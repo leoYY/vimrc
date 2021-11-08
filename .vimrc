@@ -40,7 +40,7 @@ call plug#end()
 " 暂时没有好的配色，先关掉 
 let g:ale_set_highlights = 0
 
-let g:ale_linters = {'rust': ['analyzer']}
+let g:ale_linters = {'rust': ['cargo', 'rls','analyzer']}
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 500
 let g:ale_echo_delay = 20
