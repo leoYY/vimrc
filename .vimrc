@@ -11,7 +11,8 @@ set hlsearch
 set incsearch
 set showmatch
 set backspace=indent,eol,start
-syntax on
+syntax enable
+filetype plugin indent on
 "sy on
 colorscheme desert
 "修改配置
@@ -25,9 +26,10 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'dense-analysis/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'Valloric/YouCompleteMe', {'do':'./install.py --clang-completer --go-completer'}
+Plug 'Valloric/YouCompleteMe', {'do':'/usr/local/bin/python3 install.py --clangd-completer'}
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'Shougo/echodoc.vim'
+Plug 'rust-lang/rust.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -35,31 +37,61 @@ call plug#end()
 " For ale
 " disable ale
 "let g:ale_disable_lsp = 1
+" 暂时没有好的配色，先关掉 
+let g:ale_set_highlights = 0
 
+let g:ale_linters = {'rust': ['analyzer']}
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 500
 let g:ale_echo_delay = 20
 let g:ale_lint_delay = 500
+let g:ale_fixers = {
+            \    'c' : ['clang-format'],
+            \    'cpp' : ['clang-format'],
+            \    'rust' : ['rustfmt']
+            \ }
+
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'normal'
-"let g:ale_lint_on_insert_leave = 1
-"let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
 "
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
-let g:ale_sign_error = "\ue009\ue009"
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+"let g:ale_cpp_ccls_init_options = {'cache':{'directory': '/tmp/ccls/cache'}}
+
 
 " For YCM
 " CCLS need config files in prj root, ln -s should be fine.
 " echo \"%compile_commands.json\" > .ccls-root 
 " install brew install ccls
-let g:ycm_language_server = [{'name' : 'ccls', 'cmdline' : ['ccls'], 'filetypes': ['c', 'cpp', 'objc', 'objcpp'], 'project_root_files': ['.ccls-root', 'compile_commands.json']}]
-let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/.cpp_ycm_extra_conf.py'
+let g:ycm_language_server = [
+            \   {
+            \       'name': 'rust',
+            \       'cmdline': ['rust-analyzer'],
+            \       'filetypes': ['rust'],
+            \       'project_root_files': ['Cargo.toml'],
+            \   }
+            \ ] 
+"            \   {
+"            \       'name': 'ccls',
+"            \       'cmdline': ['ccls'],
+"            \       'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+"            \       'project_root_files': ['.ccls-root', 'compile_commands.json']
+"            \   }
+"            \]
+let g:ycm_rust_toolchain_root = '/Users/yuanyi/.rustup/toolchains/stable-x86_64-apple-darwin'
+"let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/.cpp_ycm_extra_conf.py'
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
+let g:ycm_server_log_level = 'debug'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
