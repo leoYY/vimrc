@@ -25,8 +25,8 @@ https://github.com/ycm-core/YouCompleteMe
 
 git submodule update --init --recursive
 
-// rustup component add rust-src
-// brew install rust-analyzer
+// rustup component add rust-src   
+// brew install rust-analyzer   
 
 python3 install.py --clangd-completer --rust-completer
 
