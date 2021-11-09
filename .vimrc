@@ -28,13 +28,22 @@ Plug 'dense-analysis/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ycm-core/YouCompleteMe', {'do':'/usr/local/bin/python3 install.py --clangd-completer'}
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-Plug 'Shougo/echodoc.vim'
+"Plug 'Shougo/echodoc.vim'
 Plug 'rust-lang/rust.vim'
+
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/async.vim'
+"Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
 
 " Initialize plugin system
 call plug#end()
+
+" For echodoc
+"set cmdheight=2
+"set noshowmode
+"let g:echodoc_enable_at_startup=1
+"let g:echodoc#type = "echo"
 
 " For ale
 " disable ale
@@ -103,7 +112,15 @@ let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
 "let g:ycm_key_invoke_completion = '<c-z>'
-set completeopt=menu,menuone
+
+"set completeopt=menu,menuone
+set completeopt=menu,menuone,popup
+set completepopup=height:10,width:60,highlight:InfoPopup
+"set completepopup=align:menu,border:off,highlight:InfoPopup
+"set completeopt=menu,menuone,preview
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
 
 "noremap <c-z> <NOP>
 
@@ -121,7 +138,7 @@ if executable('clangd')
         autocmd User lsp_setup call lsp#register_server({
                     \ 'name': 'clangd',
                     \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    \ 'allowlist' : ['cpp', "c"]
                     \ })
         autocmd FileType c setlocal omnifunc=lsp#complete
         autocmd FileType cpp setlocal omnifunc=lsp#complete
