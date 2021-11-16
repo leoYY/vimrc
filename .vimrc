@@ -18,26 +18,35 @@ colorscheme desert
 "修改配置
 nmap <F1> :tabnew ~/.vimrc<cr>
 
-
 " Specify a directory for plugins
 " " - For Neovim: stdpath('data') . '/plugged'
 " " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-
 Plug 'dense-analysis/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ycm-core/YouCompleteMe', {'do':'/usr/local/bin/python3 install.py --clangd-completer'}
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "Plug 'Shougo/echodoc.vim'
 Plug 'rust-lang/rust.vim'
-
-Plug 'prabirshrestha/vim-lsp'
-"Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'mattn/vim-lsp-settings'
+"Plug 'liuchengxu/vista.vim'
 " Initialize plugin system
 call plug#end()
+
+" For vista
+"let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+"let g:vista_default_executive = 'vim_lsp'
+"let g:vista_executive_for = {
+"      \ 'cpp': 'vim_lsp',
+"      \ 'rust': 'vim_lsp',
+"  \ }
+"let g:vista_fzf_preview = ['right:50%']
+"let g:vista#renderer#enable_icon = 1
+"map <C-c> :Vista <cr>
+
 
 " For echodoc
 "set cmdheight=2
@@ -47,15 +56,17 @@ call plug#end()
 
 " For ale
 " disable ale
-"let g:ale_disable_lsp = 1
+" ln -s ale_linters dir to $HOME/.vim/
+" duplicated lsp-server 
+let g:ale_disable_lsp = 1
 " 暂时没有好的配色，先关掉 
 let g:ale_set_highlights = 0
 
 let g:ale_linters = 
             \ {
             \   'rust': ['cargo', 'rls','analyzer'],
-            \   'cpp': ['clang'],
-            \   'c': ['clang']
+            \   'cpp': ['clang', 'clangd'],
+            \   'c': ['clang', 'clangd']
             \ }
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 500
@@ -95,14 +106,7 @@ let g:ycm_language_server = [
             \       'filetypes': ['rust'],
             \       'project_root_files': ['Cargo.toml'],
             \   }
-            \ ] 
-"            \   {
-"            \       'name': 'ccls',
-"            \       'cmdline': ['ccls'],
-"            \       'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-"            \       'project_root_files': ['.ccls-root', 'compile_commands.json']
-"            \   }
-"            \]
+            \ ]
 let g:ycm_rust_toolchain_root = '/Users/yuanyi/.rustup/toolchains/stable-x86_64-apple-darwin'
 "let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/.cpp_ycm_extra_conf.py'
 let g:ycm_add_preview_to_completeopt = 0
@@ -130,22 +134,44 @@ let g:ycm_semantic_triggers =  {
            \ }
 
 " For vim-lsp
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = 'vim-lsp.log'
-if executable('clangd')
-    augroup lsp_clangd
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'allowlist' : ['cpp', "c"]
-                    \ })
-        autocmd FileType c setlocal omnifunc=lsp#complete
-        autocmd FileType cpp setlocal omnifunc=lsp#complete
-        autocmd FileType objc setlocal omnifunc=lsp#complete
-        autocmd FileType objcpp setlocal omnifunc=lsp#complete
-    augroup end
-endif
+"let g:lsp_auto_enable = 0
+"let g:lsp_insert_text_enabled = 0
+"let g:lsp_text_edit_enabled = 0
+"let g:lsp_completion_documentation_enabled = 0
+"let g:lsp_document_highlight_enabled = 1
+"" close vim-lsp diagnostics, use ALE
+"let g:lsp_diagnostics_enabled=0
+"let g:lsp_log_verbose = 1
+"let g:lsp_log_file = 'vim-lsp.log'
+"if executable('clangd')
+"    augroup lsp_clangd
+"        autocmd!
+"        autocmd User lsp_setup call lsp#register_server({
+"                    \ 'name': 'clangd',
+"                    \ 'cmd': {server_info->['clangd']},
+"                    \ 'allowlist' : ['cpp', "c"]
+"                    \ })
+"        autocmd FileType c setlocal omnifunc=lsp#complete
+"        autocmd FileType cpp setlocal omnifunc=lsp#complete
+"        autocmd FileType objc setlocal omnifunc=lsp#complete
+"        autocmd FileType objcpp setlocal omnifunc=lsp#complete
+"    augroup end
+"endif
+"
+"function! s:on_lsp_buffer_enabled() abort
+"    setlocal omnifunc=lsp#complete
+"    setlocal signcolumn=yes
+"    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+"    let g:lsp_format_sync_timeout = 1000
+"    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+"    " refer to doc to add more commands
+"endfunction
+"
+"augroup lsp_install
+"    au!
+"    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+"    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+"augroup END
 
 "echo  $LANG
 "echo strftime(getftime(expand("%:t")))
@@ -202,13 +228,13 @@ map <C-c> :Tlist <cr>
 "NERDTree
 "nmap <C-d> :NERDTreeToggle <CR>
 "
-map <C-X> :Vex <cr>
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-let g:netrw_sort_by = 'time'
-let g:netrw_sort_direction = 'reverse'
-let g:netrw_browse_split = 4
+"map <C-X> :Vex <cr>
+"let g:netrw_liststyle = 3
+"let g:netrw_banner = 0
+"let g:netrw_winsize = 25
+"let g:netrw_sort_by = 'time'
+"let g:netrw_sort_direction = 'reverse'
+"let g:netrw_browse_split = 4
 
 "cscope
 "cscope -Rbq -I dir(find include files) -P path
@@ -263,3 +289,30 @@ set termencoding=utf-8
 
 let g:pymode_python = 'python3'
 let g:pymode_rope = 0
+
+" For gtags
+" brew install global
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = '/usr/local/Cellar/global/6.6.7_1/share/gtags/gtags.conf'
+set cscopetag
+set cscopeprg='gtags-cscope' 
+let GtagsCscope_Auto_Load = 1
+let CtagsCscope_Auto_Map = 1
+let GtagsCscope_Quiet = 1
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_modules = []
+
+if executable('ctags')
+	let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+	let g:gutentags_modules += ['gtags_cscope']
+endif
+
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
