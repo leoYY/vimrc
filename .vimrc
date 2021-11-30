@@ -26,14 +26,16 @@ Plug 'dense-analysis/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ycm-core/YouCompleteMe', {'do':'/usr/local/bin/python3 install.py --clangd-completer'}
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-"Plug 'Shougo/echodoc.vim'
 Plug 'rust-lang/rust.vim'
 "Plug 'prabirshrestha/vim-lsp'
 "Plug 'prabirshrestha/asyncomplete-lsp.vim'
 "Plug 'prabirshrestha/asyncomplete.vim'
 "Plug 'mattn/vim-lsp-settings'
 "Plug 'liuchengxu/vista.vim'
+"Plug 'Shougo/echodoc.vim'
 " Initialize plugin system
+Plug 'skywind3000/gutentags_plus'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 " For vista
@@ -293,7 +295,7 @@ let g:pymode_rope = 0
 " For gtags
 " brew install global
 let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/usr/local/Cellar/global/6.6.7_1/share/gtags/gtags.conf'
+let $GTAGSCONF = '/usr/local/Cellar/global/6.6.7_2/share/gtags/gtags.conf'
 set cscopetag
 set cscopeprg='gtags-cscope' 
 let GtagsCscope_Auto_Load = 1
@@ -309,10 +311,21 @@ if executable('gtags-cscope') && executable('gtags')
 	let g:gutentags_modules += ['gtags_cscope']
 endif
 
-let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
+
+" enable gtags module
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+
+" config project root markers.
+let g:gutentags_project_root = ['.root']
+
+" change focus to quickfix window after search (optional).
+let g:gutentags_plus_switch = 1
+"
+"brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+let g:gutentags_define_advanced_commands = 1
