@@ -36,6 +36,7 @@ Plug 'rust-lang/rust.vim'
 " Initialize plugin system
 Plug 'skywind3000/gutentags_plus'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " For vista
@@ -237,6 +238,10 @@ map <C-c> :Tlist <cr>
 "let g:netrw_sort_by = 'time'
 "let g:netrw_sort_direction = 'reverse'
 "let g:netrw_browse_split = 4
+let NERDTreeWinSize=32          " 设置NERDTree子窗口宽度
+let NERDTreeWinPos="right"      " 设置NERDTree子窗口位置
+let NERDTreeShowHidden=1        " 显示隐藏文件
+let NERDTreeMinimalUI=1         " NERDTree 子窗口中不显示冗余帮助信息
 
 "cscope
 "cscope -Rbq -I dir(find include files) -P path
