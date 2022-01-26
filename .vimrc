@@ -15,7 +15,7 @@ set backspace=indent,eol,start
 syntax enable
 filetype plugin indent on
 "sy on
-colorscheme desert
+colorscheme iceberg
 
 "修改配置
 nmap <F1> :tabnew ~/.vimrc<CR>
@@ -41,6 +41,10 @@ Plug 'rust-lang/rust.vim'
 Plug 'skywind3000/gutentags_plus'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'scrooloose/nerdtree'
+" copy colors/iceberg.vim to .vim/colors/
+Plug 'cocopon/iceberg.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " For vista
