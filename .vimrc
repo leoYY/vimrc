@@ -1,3 +1,4 @@
+" <leader> is just like command-prefix like <C-B> in tmux ; default <leader> for vim is '\'
 set exrc "support dynamic vimrc
 set nu
 set vb
