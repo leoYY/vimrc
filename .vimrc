@@ -143,6 +143,8 @@ let g:ycm_semantic_triggers =  {
            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
            \ 'cs,lua,javascript': ['re!\w{2}'],
            \ }
+	   
+nmap <leader>yf <Plug>(YCMFindSymbolInWorkspace)
 
 " For vim-lsp
 "let g:lsp_auto_enable = 0
@@ -231,7 +233,7 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 
 "tlist
-map <C-c> :Tlist <cr>
+map <C-d> :Tlist <cr>
 
 "let g:winManagerWindowLayout='FileExplorer|TagList'
 "nmap wm :WMToggle<cr>
