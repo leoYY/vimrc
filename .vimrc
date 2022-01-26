@@ -4,9 +4,9 @@ set vb
 set autoindent
 set cindent
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set hlsearch
 set incsearch
 set showmatch
@@ -15,8 +15,11 @@ syntax enable
 filetype plugin indent on
 "sy on
 colorscheme desert
+
 "修改配置
-nmap <F1> :tabnew ~/.vimrc<cr>
+nmap <F1> :tabnew ~/.vimrc<CR>
+"更新配置
+noremap <leadr>r : source ~/.vimrc<CR>
 
 " Specify a directory for plugins
 " " - For Neovim: stdpath('data') . '/plugged'
@@ -247,21 +250,21 @@ let NERDTreeMinimalUI=1         " NERDTree 子窗口中不显示冗余帮助信�
 "cscope -Rbq -I dir(find include files) -P path
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 " find c symbol
-nmap ss : cs find s <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+"nmap ss : cs find s <C-R>=expand("<cword>")<CR><CR>:cw<CR>
 " find function definition
-nmap sg : cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap sg : cs find g <C-R>=expand("<cword>")<CR><CR>
 " find called tree
-nmap sc : cs find c <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+"nmap sc : cs find c <C-R>=expand("<cword>")<CR><CR>:cw<CR>
 " find string
-nmap st : cs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap st : cs find t <C-R>=expand("<cword>")<CR><CR>
 " find this functinos called functions
-nmap sd : cs find d <C-R>=expand("<cword>")<CR><CR>
+"nmap sd : cs find d <C-R>=expand("<cword>")<CR><CR>
 " find which files #include this
-nmap si : cs find i <C-R>=expand("<cword>")<CR><CR>
+"nmap si : cs find i <C-R>=expand("<cword>")<CR><CR>
 " find file
-nmap sf : cs find f <C-R>=expand("<cword>")<CR><CR>
+"nmap sf : cs find f <C-R>=expand("<cword>")<CR><CR>
 " find egrep
-nmap se : cs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap se : cs find e <C-R>=expand("<cword>")<CR><CR>
 
 "plugin xml.vim  needs 
 ":filetype plugin indent on
