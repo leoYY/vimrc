@@ -251,6 +251,42 @@ let NERDTreeWinPos="right"      " 设置NERDTree子窗口位置
 let NERDTreeShowHidden=1        " 显示隐藏文件
 let NERDTreeMinimalUI=1         " NERDTree 子窗口中不显示冗余帮助信息
 
+" for LeaderF
+" for LeaderF
+"nmap sf : LeaderfFunction <CR>
+"nmap se : LeaderfFunctionAll <CR>
+"nmap ff : LeaderfFile <CR>
+
+" don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+" for macos font err
+"      brew tap homebrew/cask-fonts
+"      brew install --cask font-hack-nerd-font
+"      set iterm font to Hack nerd font
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_ShortcutF = "<leader>ff"
+
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <leader>fs :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
+noremap <leader>fc :<C-U><C-R>=printf("Leaderf rg --current-buffer %s", "")<CR><CR>
+
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+
+" for view
+nmap <C-w>z : tab split<CR>
+
 "cscope
 "cscope -Rbq -I dir(find include files) -P path
 set cscopequickfix=s-,c-,d-,i-,t-,e-
