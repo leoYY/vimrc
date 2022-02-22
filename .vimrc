@@ -17,6 +17,11 @@ filetype plugin indent on
 "sy on
 colorscheme iceberg
 
+" fold code
+" some command zc,za,zR,zM. search for help
+set foldmethod=syntax
+set nofoldenable
+
 "修改配置
 nmap <F1> :tabnew ~/.vimrc<CR>
 "更新配置
