@@ -18,9 +18,10 @@ filetype plugin indent on
 colorscheme iceberg
 
 " fold code
-" some command zc,za,zR,zM. search for help
-set foldmethod=syntax
-set nofoldenable
+" some command zc,za,zR,zM. search for help; 
+" Don't use this, it make insert too slow when syntax enable
+"set foldmethod=syntax
+"set nofoldenable
 
 "修改配置
 nmap <F1> :tabnew ~/.vimrc<CR>
