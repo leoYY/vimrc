@@ -20,7 +20,7 @@ colorscheme iceberg
 " fold code
 " some command zc,za,zR,zM. search for help; 
 " Don't use this, it make insert too slow when syntax enable
-"set foldmethod=syntax
+"set foldmethod=indent
 "set nofoldenable
 
 "修改配置
