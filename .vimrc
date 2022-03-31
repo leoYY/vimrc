@@ -17,6 +17,12 @@ filetype plugin indent on
 "sy on
 colorscheme iceberg
 
+" keep in mind some shortcuts 
+" [[ // search up and move cursor to nearest function starting point.
+" ][ // search down and move cursor to nearest function endding point.
+" ]] // search down and move cursor to second function starting point.
+" [] // search up and move cursor to second function endding point.
+
 " fold code
 " some command zc,za,zR,zM. search for help; 
 " Don't use this, it make insert too slow when syntax enable
