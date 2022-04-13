@@ -50,8 +50,8 @@ Plug 'rust-lang/rust.vim'
 "Plug 'liuchengxu/vista.vim'
 "Plug 'Shougo/echodoc.vim'
 " Initialize plugin system
-Plug 'skywind3000/gutentags_plus'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'skywind3000/gutentags_plus'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'scrooloose/nerdtree'
 " copy colors/iceberg.vim to .vim/colors/
 Plug 'cocopon/iceberg.vim'
