@@ -26,8 +26,8 @@ colorscheme iceberg
 " fold code
 " some command zc,za,zR,zM. search for help; 
 " Don't use this, it make insert too slow when syntax enable
-"set foldmethod=indent
-"set nofoldenable
+set foldmethod=indent
+set nofoldenable
 
 "修改配置
 nmap <F1> :tabnew ~/.vimrc<CR>
@@ -35,8 +35,8 @@ nmap <F1> :tabnew ~/.vimrc<CR>
 noremap <leadr>r : source ~/.vimrc<CR>
 
 " Specify a directory for plugins
-" " - For Neovim: stdpath('data') . '/plugged'
-" " - Avoid using standard Vim directory names like 'plugin'
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 Plug 'dense-analysis/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -139,6 +139,7 @@ let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
 "let g:ycm_key_invoke_completion = '<c-z>'
+let g:ycm_auto_hover=''
 
 "set completeopt=menu,menuone
 set completeopt=menu,menuone,popup
@@ -148,6 +149,7 @@ set completepopup=height:10,width:60,highlight:InfoPopup
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
+"let g:loaded_youcompleteme = 1
 
 "noremap <c-z> <NOP>
 
@@ -238,7 +240,7 @@ nmap <s-l> :tabnext <cr>
 "autocmd bufnewfile *.py call InitPythonClass()
     
 "显示状态信息
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%o4v][%p%%]\ [LEN=%L]
+" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%o4v][%p%%]\ [LEN=%L]
 
 set laststatus=2
 let Tlist_Show_One_File=1
@@ -251,8 +253,7 @@ map <C-d> :Tlist <cr>
 "nmap wm :WMToggle<cr>
 
 "NERDTree
-"nmap <C-d> :NERDTreeToggle <CR>
-"
+nmap <s-c> :NERDTreeToggle <CR>
 "map <C-X> :Vex <cr>
 "let g:netrw_liststyle = 3
 "let g:netrw_banner = 0
@@ -265,7 +266,6 @@ let NERDTreeWinPos="right"      " 设置NERDTree子窗口位置
 let NERDTreeShowHidden=1        " 显示隐藏文件
 let NERDTreeMinimalUI=1         " NERDTree 子窗口中不显示冗余帮助信息
 
-" for LeaderF
 " for LeaderF
 "nmap sf : LeaderfFunction <CR>
 "nmap se : LeaderfFunctionAll <CR>
@@ -294,9 +294,16 @@ noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <leader>fs :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
 noremap <leader>fc :<C-U><C-R>=printf("Leaderf rg --current-buffer %s", "")<CR><CR>
+noremap <leader>fi :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
 
 noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+"xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+"noremap go :<C-U>Leaderf! rg --recall<CR>
 
 " for view
 nmap <C-w>z : tab split<CR>

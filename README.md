@@ -8,7 +8,7 @@ install step:
 
     cd src/  
     
-    ./configure --with-features=huge --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu --enable-python3interp --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu  --enable-cscope --enable-multibyte --enable-fail-if-missing  
+    ./configure --with-features=huge --enable-python3interp --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu  --enable-cscope --enable-multibyte --enable-fail-if-missing  
     make -j4 && make install
 
 MacOS下仅安装python3支持即可
