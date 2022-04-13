@@ -16,6 +16,8 @@ syntax enable
 filetype plugin indent on
 "sy on
 colorscheme iceberg
+" 设计背景透明度
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bj 
 
 " keep in mind some shortcuts 
 " [[ // search up and move cursor to nearest function starting point.
