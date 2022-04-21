@@ -33,7 +33,7 @@ python3 install.py --clangd-completer --rust-completer
 查找系统include文件
 echo | clang -v -E -x c++ -;
 
-ycm/examples/.ycm_extra_conf.py 可以最为基础模版  
+YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py 可以最为基础模版  
 补充.ycm_extra_conf.py配置for cpp
 
 ```
