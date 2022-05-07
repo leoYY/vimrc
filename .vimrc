@@ -161,6 +161,9 @@ let g:ycm_semantic_triggers =  {
            \ }
 	   
 nmap <leader>yf <Plug>(YCMFindSymbolInWorkspace)
+noremap <leader>gg :YcmCompleter GoTo<CR>
+noremap <leader>gc :YcmCompleter GoToCallers<CR>
+noremap <leader>gi :YcmCompleter GoToImplementation<CR>
 
 " For vim-lsp
 "let g:lsp_auto_enable = 0
