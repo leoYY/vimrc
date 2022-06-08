@@ -271,6 +271,43 @@ let NERDTreeWinPos="right"      " 设置NERDTree子窗口位置
 let NERDTreeShowHidden=1        " 显示隐藏文件
 let NERDTreeMinimalUI=1         " NERDTree 子窗口中不显示冗余帮助信息
 
+" For gtags
+" brew install global
+let $GTAGSLABEL = 'ctags'
+let $GTAGSCONF = '/usr/local/Cellar/global/6.6.7_2/share/gtags/gtags.conf'
+set cscopetag
+set cscopeprg='gtags-cscope' 
+let GtagsCscope_Auto_Load = 1
+let CtagsCscope_Auto_Map = 1
+let GtagsCscope_Quiet = 1
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_modules = []
+
+if executable('ctags')
+	let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+	let g:gutentags_modules += ['gtags_cscope']
+endif
+
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+" enable gtags module
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+
+" config project root markers.
+let g:gutentags_project_root = ['.root']
+
+" change focus to quickfix window after search (optional).
+let g:gutentags_plus_switch = 1
+"
+"brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+let g:gutentags_define_advanced_commands = 1
+
 " for LeaderF
 "nmap sf : LeaderfFunction <CR>
 "nmap se : LeaderfFunctionAll <CR>
@@ -311,15 +348,16 @@ noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 "xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 "noremap go :<C-U>Leaderf! rg --recall<CR>
 
-" should use `Leaderf gtags --update` first
+" should use `Leaderf gtags --update --debug` first
 let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_GtagsAutoUpdate = 1
-let g:Lf_Gtagslabel = 'native-pygments'
+let g:Lf_Gtagslabel = 'ctags'
 noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
 "noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 "noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+noremap <leader>fg :<C-U><C-R>=printf("Leaderf gtags --all --result ctags-mod")<CR><CR>
 
 " for view
 nmap <C-w>z : tab split<CR>
@@ -378,40 +416,4 @@ set termencoding=utf-8
 let g:pymode_python = 'python3'
 let g:pymode_rope = 0
 
-" For gtags
-" brew install global
-let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/usr/local/Cellar/global/6.6.7_2/share/gtags/gtags.conf'
-set cscopetag
-set cscopeprg='gtags-cscope' 
-let GtagsCscope_Auto_Load = 1
-let CtagsCscope_Auto_Map = 1
-let GtagsCscope_Quiet = 1
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_modules = []
 
-if executable('ctags')
-	let g:gutentags_modules += ['ctags']
-endif
-if executable('gtags-cscope') && executable('gtags')
-	let g:gutentags_modules += ['gtags_cscope']
-endif
-
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-
-
-" enable gtags module
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-
-" config project root markers.
-let g:gutentags_project_root = ['.root']
-
-" change focus to quickfix window after search (optional).
-let g:gutentags_plus_switch = 1
-"
-"brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-let g:gutentags_define_advanced_commands = 1
