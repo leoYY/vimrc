@@ -1,8 +1,9 @@
-source /usr/local/share/antigen/antigen.zsh
+source $HOME/.vim/zsh/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
+# install antigen curl -L git.io/antigen > antigen.zsh
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
 antigen bundle z
@@ -16,7 +17,7 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle zdharma/fast-syntax-highlighting
 antigen bundle changyuheng/zsh-interactive-cd
 #antigen bundle laurenkt/zsh-vimto
-antigen bundle psprint/history-search-multi-word
+antigen bundle zdharma-continuum/history-search-multi-word
 
 # Load the theme.
 #antigen bundle mafredri/zsh-async
