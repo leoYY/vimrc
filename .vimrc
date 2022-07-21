@@ -175,7 +175,7 @@ let g:ycm_enable_semantic_highlighting = 1
 " for trigger SignatureHelp Manually
 imap <silent><C-l> <Plug>(YCMToggleSignatureHelp)
 
-# END YCM 
+" END YCM 
 
 " For vim-lsp
 "let g:lsp_auto_enable = 0
