@@ -59,7 +59,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'cocopon/iceberg.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'puremourning/vimspector'
 call plug#end()
+
+nnoremap <leader>jj :call common#GotoJump()<CR>
 
 " For vista
 "let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
@@ -124,6 +127,7 @@ let g:ale_sign_warning = '⚡'
 " CCLS need config files in prj root, ln -s should be fine.
 " echo \"%compile_commands.json\" > .ccls-root 
 " install brew install ccls
+let g:ycm_clangd_binary_path = '/usr/bin/clangd' 
 let g:ycm_language_server = [
             \   {
             \       'name': 'rust',
@@ -164,6 +168,7 @@ nmap <leader>yf <Plug>(YCMFindSymbolInWorkspace)
 noremap <leader>gg :YcmCompleter GoTo<CR>
 noremap <leader>gc :YcmCompleter GoToCallers<CR>
 noremap <leader>gi :YcmCompleter GoToImplementation<CR>
+noremap <leader>gr :YcmCompleter GoToReferences<CR>
 
 " For vim-lsp
 "let g:lsp_auto_enable = 0
@@ -415,5 +420,8 @@ set termencoding=utf-8
 
 let g:pymode_python = 'python3'
 let g:pymode_rope = 0
+
+" for vimspector 
+let g:vimspector_install_gadgets = [ 'vscode-cpptools', 'CodeLLDB' ]
 
 
