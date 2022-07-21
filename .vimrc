@@ -170,6 +170,13 @@ noremap <leader>gc :YcmCompleter GoToCallers<CR>
 noremap <leader>gi :YcmCompleter GoToImplementation<CR>
 noremap <leader>gr :YcmCompleter GoToReferences<CR>
 
+" for highlighting
+let g:ycm_enable_semantic_highlighting = 1
+" for trigger SignatureHelp Manually
+imap <silent><C-l> <Plug>(YCMToggleSignatureHelp)
+
+# END YCM 
+
 " For vim-lsp
 "let g:lsp_auto_enable = 0
 "let g:lsp_insert_text_enabled = 0
