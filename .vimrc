@@ -42,7 +42,7 @@ noremap <leadr>r : source ~/.vimrc<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'dense-analysis/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'ycm-core/YouCompleteMe', {'do':'/usr/local/bin/python3 install.py --clangd-completer'}
+Plug 'ycm-core/YouCompleteMe', {'do':'python3 install.py --clangd-completer'}
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'rust-lang/rust.vim'
 "Plug 'prabirshrestha/vim-lsp'
