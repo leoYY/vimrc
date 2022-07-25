@@ -89,3 +89,5 @@ TODO add Plug 'ludovicchabant/vim-gutentags'  用于自动更新管理 ctags
 TODO add skywind3000/asyncrun.vim     
 
 https://www.zhihu.com/question/47691414
+
+ - [ ] TODO: 支持setup的脚本，能够在环境自动安装vim，tmux等常用软件以及相关插件
