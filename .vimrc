@@ -56,7 +56,7 @@ Plug 'rust-lang/rust.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'scrooloose/nerdtree'
 " copy colors/iceberg.vim to .vim/colors/
-Plug 'cocopon/iceberg.vim'
+Plug 'cocopon/iceberg.vim', {'do':'mkdir ~/.vim/colors && cp ./colors/iceberg.vim ~/.vim/colors/'} 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'puremourning/vimspector'
