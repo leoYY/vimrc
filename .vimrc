@@ -42,7 +42,7 @@ noremap <leadr>r : source ~/.vimrc<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'dense-analysis/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'ycm-core/YouCompleteMe', {'do':'/usr/local/bin/python3 install.py --clangd-completer'}
+Plug 'ycm-core/YouCompleteMe', {'do':'python3 install.py --clangd-completer'}
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'rust-lang/rust.vim'
 "Plug 'prabirshrestha/vim-lsp'
@@ -56,7 +56,7 @@ Plug 'rust-lang/rust.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'scrooloose/nerdtree'
 " copy colors/iceberg.vim to .vim/colors/
-Plug 'cocopon/iceberg.vim'
+Plug 'cocopon/iceberg.vim', {'do':'mkdir ~/.vim/colors && cp ./colors/iceberg.vim ~/.vim/colors/'} 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'puremourning/vimspector'
