@@ -60,6 +60,7 @@ Plug 'cocopon/iceberg.vim', {'do':'mkdir ~/.vim/colors && cp ./colors/iceberg.vi
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'puremourning/vimspector'
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 nnoremap <leader>jj :call common#GotoJump()<CR>
@@ -430,5 +431,9 @@ let g:pymode_rope = 0
 
 " for vimspector 
 let g:vimspector_install_gadgets = [ 'vscode-cpptools', 'CodeLLDB' ]
+
+" for asyncrun
+let g:asyncrun_open = 20
+
 
 
