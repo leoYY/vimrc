@@ -28,7 +28,7 @@ autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bj
 " fold code
 " some command zc,za,zR,zM. search for help; 
 " Don't use this, it make insert too slow when syntax enable
-set foldmethod=indent
+set foldmethod=manual
 set nofoldenable
 
 "修改配置
@@ -116,7 +116,7 @@ let g:ale_lint_on_insert_leave = 1
 let g:airline#extensions#ale#enabled = 1
 "
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++1z'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 let g:ale_sign_error = '✗'
@@ -223,8 +223,8 @@ imap <silent><C-l> <Plug>(YCMToggleSignatureHelp)
 "imap { {}<Esc>i
 "imap < <><Esc>i
 
-noremap <S-j> gj
-noremap <S-k> gk
+"noremap <S-j> gj
+"noremap <S-k> gk
 "noremap <S-h> g0
 "noremap <S-l> g$
 
@@ -271,7 +271,7 @@ map <C-d> :Tlist <cr>
 "nmap wm :WMToggle<cr>
 
 "NERDTree
-nmap <s-c> :NERDTreeToggle <CR>
+nmap <s-c> :NERDTreeToggle <CR><c-w><c-w>
 "map <C-X> :Vex <cr>
 "let g:netrw_liststyle = 3
 "let g:netrw_banner = 0
@@ -287,7 +287,7 @@ let NERDTreeMinimalUI=1         " NERDTree 子窗口中不显示冗余帮助信�
 " For gtags
 " brew install global
 let $GTAGSLABEL = 'ctags'
-let $GTAGSCONF = '/usr/local/Cellar/global/6.6.7_2/share/gtags/gtags.conf'
+let $GTAGSCONF = '/opt/homebrew/Cellar/global/6.6.8/share/gtags/gtags.conf'
 set cscopetag
 set cscopeprg='gtags-cscope' 
 let GtagsCscope_Auto_Load = 1
@@ -431,9 +431,7 @@ let g:pymode_rope = 0
 
 " for vimspector 
 let g:vimspector_install_gadgets = [ 'vscode-cpptools', 'CodeLLDB' ]
+"let g:vimspector_enable_mappings = 'HUMAN'
 
-" for asyncrun
+" for asyncrun 
 let g:asyncrun_open = 20
-
-
-
