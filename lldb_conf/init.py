@@ -1,5 +1,8 @@
 import lldb
 
+def getFrame(debugger):
+    return debugger.GetSelectedTarget().GetProcess().GetSelectedThread().GetSelectedFrame() 
+
 def loopArr(debugger, command, result, internal_dict):
     params = command.split(" ")
     basePtrExpr = params[0]
@@ -8,6 +11,35 @@ def loopArr(debugger, command, result, internal_dict):
     cmd = "p *(%s + %d)"
     for i in range(start, to):
         debugger.HandleCommand(cmd%(basePtrExpr, i))
+
+def loopArrBinaryFormat(frame, basePtrExpr, start, to, elementFormat):
+    elementSize = int(frame.EvaluateExpression("sizeof(%s[%d])"%(basePtrExpr, start)).value)
+    vFormat=" ".join([elementFormat%(i) for i in range(elementSize)])
+    print("Each line bytes size: %d"%elementSize)
+    for i in range(start, to):
+        elementAddr = (frame.EvaluateExpression("&(%s[%d])"%(basePtrExpr, i)).value)
+        elements = []
+        for j in range(elementSize):
+            elementValue = int(frame.EvaluateExpression("int(((uint8_t*)&(%s[%d]))[%d])"%(basePtrExpr, i, j)).value)
+            elements.append(elementValue)
+        vals=vFormat.format(*elements) 
+        print("%s: %s"%(elementAddr, vals))
+
+def loopArrHex(debugger, command, result, internal_dict):
+    params = command.split(" ")
+    basePtrExpr = params[0]
+    start = int(params[1])
+    to = int(params[2])
+    frame = getFrame(debugger)
+    loopArrBinaryFormat(frame, basePtrExpr, start, to, "0x{%d:02x}")
+
+def loopArrBin(debugger, command, result, internal_dict):
+    params = command.split(" ")
+    basePtrExpr = params[0]
+    start = int(params[1])
+    to = int(params[2])
+    frame = getFrame(debugger)
+    loopArrBinaryFormat(frame, basePtrExpr, start, to, "{%d:08b}")
 
 class DisassemblyMode:
     def __init__(self, debugger, unused):
@@ -55,5 +87,7 @@ class DisassemblyMode:
 
 def __lldb_init_module(debugger, internal_dict):
     debugger.HandleCommand("command script add -f init.loopArr loopArr")
+    debugger.HandleCommand("command script add -f init.loopArrHex loopArrHex")
+    debugger.HandleCommand("command script add -f init.loopArrBin loopArrBin")
     debugger.HandleCommand("command script add -c init.DisassemblyMode toggle-disassembly")
 
