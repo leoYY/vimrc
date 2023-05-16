@@ -18,6 +18,7 @@ antigen bundle zdharma/fast-syntax-highlighting --branch=main
 antigen bundle changyuheng/zsh-interactive-cd
 #antigen bundle laurenkt/zsh-vimto
 antigen bundle zdharma-continuum/history-search-multi-word --branch=main
+antigen bundle agkozak/zsh-z
 
 # Load the theme.
 #antigen bundle mafredri/zsh-async
