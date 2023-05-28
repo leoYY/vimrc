@@ -61,6 +61,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'puremourning/vimspector'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'github/copilot.vim'
 call plug#end()
 
 nnoremap <leader>jj :call common#GotoJump()<CR>
@@ -128,6 +129,7 @@ let g:ale_sign_warning = '⚡'
 " CCLS need config files in prj root, ln -s should be fine.
 " echo \"%compile_commands.json\" > .ccls-root 
 " install brew install ccls
+"let g:ycm_clangd_binary_path = '/opt/homebrew/opt/llvm/bin/clangd' 
 let g:ycm_clangd_binary_path = '/usr/bin/clangd' 
 let g:ycm_language_server = [
             \   {
@@ -148,11 +150,6 @@ let g:ycm_complete_in_strings=1
 "let g:ycm_key_invoke_completion = '<c-z>'
 let g:ycm_auto_hover=''
 
-"set completeopt=menu,menuone
-set completeopt=menu,menuone,popup
-set completepopup=height:10,width:60,highlight:InfoPopup
-"set completepopup=align:menu,border:off,highlight:InfoPopup
-"set completeopt=menu,menuone,preview
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
@@ -254,8 +251,8 @@ nmap <s-l> :tabnext <cr>
 
 
 "加载自定义脚本
-"source $HOME/.vim/script/python.vim
-"autocmd bufnewfile *.py call InitPythonClass()
+source $HOME/.vim/script/python.vim
+autocmd bufnewfile *.py call InitPythonClass()
     
 "显示状态信息
 " set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%o4v][%p%%]\ [LEN=%L]
@@ -284,42 +281,44 @@ let NERDTreeWinPos="right"      " 设置NERDTree子窗口位置
 let NERDTreeShowHidden=1        " 显示隐藏文件
 let NERDTreeMinimalUI=1         " NERDTree 子窗口中不显示冗余帮助信息
 
-" For gtags
+" --------------- For gtags --------------- 
+" TODO NOUSED
 " brew install global
-let $GTAGSLABEL = 'ctags'
-let $GTAGSCONF = '/opt/homebrew/Cellar/global/6.6.8/share/gtags/gtags.conf'
-set cscopetag
-set cscopeprg='gtags-cscope' 
-let GtagsCscope_Auto_Load = 1
-let CtagsCscope_Auto_Map = 1
-let GtagsCscope_Quiet = 1
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_modules = []
-
-if executable('ctags')
-	let g:gutentags_modules += ['ctags']
-endif
-if executable('gtags-cscope') && executable('gtags')
-	let g:gutentags_modules += ['gtags_cscope']
-endif
-
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-
-" enable gtags module
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-
-" config project root markers.
-let g:gutentags_project_root = ['.root']
-
-" change focus to quickfix window after search (optional).
-let g:gutentags_plus_switch = 1
+"let $GTAGSLABEL = 'ctags'
+"let $GTAGSCONF = '/opt/homebrew/Cellar/global/6.6.8/share/gtags/gtags.conf'
+"set cscopetag
+"set cscopeprg='gtags-cscope' 
+"let GtagsCscope_Auto_Load = 1
+"let CtagsCscope_Auto_Map = 1
+"let GtagsCscope_Quiet = 1
+"let g:gutentags_ctags_tagfile = '.tags'
+"let g:gutentags_modules = []
 "
-"brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-let g:gutentags_define_advanced_commands = 1
+"if executable('ctags')
+"	let g:gutentags_modules += ['ctags']
+"endif
+"if executable('gtags-cscope') && executable('gtags')
+"	let g:gutentags_modules += ['gtags_cscope']
+"endif
+"
+"let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+"let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+"let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+"
+"let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+"
+"" enable gtags module
+"let g:gutentags_modules = ['ctags', 'gtags_cscope']
+"
+"" config project root markers.
+"let g:gutentags_project_root = ['.root']
+"
+"" change focus to quickfix window after search (optional).
+"let g:gutentags_plus_switch = 1
+""
+""brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+"let g:gutentags_define_advanced_commands = 1
+" --------------- For gtags --------------- 
 
 " for LeaderF
 "nmap sf : LeaderfFunction <CR>
@@ -375,9 +374,10 @@ noremap <leader>fg :<C-U><C-R>=printf("Leaderf gtags --all --result ctags-mod")<
 " for view
 nmap <C-w>z : tab split<CR>
 
-"cscope
+"---------------- cscope ---------------- 
+" TODO NO USE
 "cscope -Rbq -I dir(find include files) -P path
-set cscopequickfix=s-,c-,d-,i-,t-,e-
+"set cscopequickfix=s-,c-,d-,i-,t-,e-
 " find c symbol
 "nmap ss : cs find s <C-R>=expand("<cword>")<CR><CR>:cw<CR>
 " find function definition
@@ -394,6 +394,7 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 "nmap sf : cs find f <C-R>=expand("<cword>")<CR><CR>
 " find egrep
 "nmap se : cs find e <C-R>=expand("<cword>")<CR><CR>
+"---------------- cscope ---------------- 
 
 "plugin xml.vim  needs 
 ":filetype plugin indent on

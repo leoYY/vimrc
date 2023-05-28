@@ -10,6 +10,7 @@ import sys,os,getopt,logging,traceback
 # import search path
 # sys.path.append() 
 import gflags
+import importlib
 
 # ================ log ===============
 LOGFILE="./@FILE.log"
@@ -24,6 +25,11 @@ LEVEL['WARNING'] = logging.WARNING
 LEVEL['ERROR'] = logging.ERROR
 LEVEL['CRITICAL'] = logging.CRITICAL
 
+# ============== gflags ==============
+# gflags.DEFINE_string("arg1", \"\", \"argument example\")
+# usage like FLAGS.arg1
+FLAGS = gflags.FLAGS
+
 def InitLog():
     logger = logging.getLogger()
     hdlr = logging.FileHandler(LOGFILE)
@@ -35,14 +41,13 @@ def InitLog():
 LOG=InitLog()
 
 def main(argv):
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+    importlib.reload(sys)
     try:
         argv = gflags.FLAGS(argv)
     except gflags.UnrecognizedFlagError as e:
-        print "%s"%(e)
+        print("%s"%(e))
     except gflags.FlagsError as e:
-        print "%s \\n Usage: %s ARGS\\n %s"%(e, sys.argv[0], FLAGS)
+        print("%s \\n Usage: %s ARGS\\n %s"%(e, sys.argv[0], FLAGS))
         sys.exit(1)
 
 if __name__ == "__main__":

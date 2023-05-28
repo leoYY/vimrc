@@ -41,6 +41,14 @@ def loopArrBin(debugger, command, result, internal_dict):
     frame = getFrame(debugger)
     loopArrBinaryFormat(frame, basePtrExpr, start, to, "{%d:08b}")
 
+def loopArrAscii(debugger, command, result, internal_dict):
+    params = command.split(" ")
+    basePtrExpr = params[0]
+    start = int(params[1])
+    to = int(params[2])
+    frame = getFrame(debugger)
+    loopArrBinaryFormat(frame, basePtrExpr, start, to, "{%c:08b}")
+
 class DisassemblyMode:
     def __init__(self, debugger, unused):
         self.dbg = debugger

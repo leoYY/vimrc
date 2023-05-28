@@ -3,7 +3,7 @@ function InitPythonClass()
     call setline(1,"# -*- coding: ".strpart($LANG,stridx($LANG,"\.")+1,strlen($LANG))." -*-")
     let user = system("whoami")
     let l:word = []
-    :lan tim en_US.utf8
+    ":lan tim en_US.utf8
     let l:date = strftime("%c")
     for line in l:tmp
        let line = substitute(line,"@USER",strpart(user,-1,strlen(user)),"g") 
