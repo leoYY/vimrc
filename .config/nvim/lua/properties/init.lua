@@ -62,6 +62,7 @@ local telescope = require('telescope').setup {
         lsp_references = true,
         lsp_rename = true,
         lsp_type_definitions = true,
+        lsp_implementations = true,
         lsp_workspace_diagnostics = true,
     },
 }
@@ -160,7 +161,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-o>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
@@ -222,6 +223,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 vim.diagnostic.config({virtual_text = false})
 
 require'lspconfig'.clangd.setup{
+  -- cmd = { "/opt/homebrew/opt/llvm@14/bin/clangd", "--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory" }
   capabilities = capabilities,
   --on_attach = function(client)
   --  client.resolved_capabilities.document_formatting = false
