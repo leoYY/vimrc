@@ -104,10 +104,7 @@ cmp.setup({
       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
-  },
+  
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -135,6 +132,28 @@ cmp.setup({
   }, {
     { name = 'buffer' },
   }),
+--  window = {
+--    completion = {
+--      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+--      col_offset = -3,
+--      side_padding = 0,
+--    },
+--  },
+--  formatting = {
+--    fields = { "kind", "abbr", "menu" },
+--    format = function(entry, vim_item)
+--      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+--      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+--      kind.kind = " " .. (strings[1] or "") .. " "
+--      kind.menu = "    (" .. (strings[2] or "") .. ")"
+--
+--      return kind
+--    end,
+--  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
   formatting = {
     format = lspkind.cmp_format({
       with_text = true, -- do not show text alongside icons
@@ -162,7 +181,10 @@ cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
-  }
+  },
+  view = {                                                
+    entries = {name = 'wildmenu', separator = ', ' }       
+  },
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -172,7 +194,10 @@ cmp.setup.cmdline(':', {
     { name = 'path' }
   }, {
     { name = 'cmdline' }
-  })
+  }),
+  view = {                                                
+    entries = {name = 'wildmenu', separator = ', ' }       
+  },
 })
 
 vim.lsp.set_log_level("debug")
