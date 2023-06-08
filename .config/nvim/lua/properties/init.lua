@@ -47,11 +47,12 @@ require'nvim-treesitter.configs'.setup {
 local telescope = require('telescope').setup {
     defaults = {
         -- 配置文件查找器
-        file_finder = require('telescope.finders').fd,
+        --file_finder = require('telescope.finders').fd,
         -- 配置文件预览器
         file_previewer = require('telescope.previewers').vim_buffer_cat.new,
         -- 配置文件选择器
-        file_sorter = require('telescope.sorters').get_fuzzy_file,
+        -- file_sorter = require('telescope.sorters').get_fuzzy_file,
+        file_sorter = require('telescope.sorters').fzf_sorter,
         -- 配置文件主题
         theme = 'ivy',
         -- 配置 lsp 功能
@@ -64,85 +65,24 @@ local telescope = require('telescope').setup {
         lsp_type_definitions = true,
         lsp_implementations = true,
         lsp_workspace_diagnostics = true,
+         -- 使用 fzf 原生扩展加速预览
+        extensions = {
+          fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                             -- the default case_mode is "smart_case"
+          }
+        } 
     },
 }
+
+require('telescope').load_extension('fzf')
 
 -- cmp
 local lspkind = require('lspkind')
 local cmp = require'cmp'
-
---cmp.setup {
---  -- 指定 snippet 引擎
---  snippet = {
---    expand = function(args)
---      -- For `vsnip` users.
---      vim.fn["vsnip#anonymous"](args.body)
---
---      -- For `luasnip` users.
---      -- require('luasnip').lsp_expand(args.body)
---
---      -- For `ultisnips` users.
---      -- vim.fn["UltiSnips#Anon"](args.body)
---
---      -- For `snippy` users.
---      -- require'snippy'.expand_snippet(args.body)
---    end,
---  },
---  -- 来源
---  sources = cmp.config.sources({
---      { name = 'nvim_lsp' },
---      -- For vsnip users.
---      { name = 'vsnip' },
---      -- For luasnip users.
---      -- { name = 'luasnip' },
---      --For ultisnips users.
---      -- { name = 'ultisnips' },
---      -- -- For snippy users.
---      -- { name = 'snippy' },
---      { name = 'nvim_lsp_signature_help' }
---    }, 
---    { 
---      { name = 'buffer' },
---      { name = 'path' }
---    }
---  ),
---
---  -- 快捷键
---  -- mapping = require'keybindings'.cmp(cmp),
---  ---- 使用lspkind-nvim显示类型图标
---  formatting = {
---    format = lspkind.cmp_format({
---      with_text = true, -- do not show text alongside icons
---      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
---      before = function (entry, vim_item)
---        -- Source 显示提示来源
---        vim_item.menu = "["..string.upper(entry.source.name).."]"
---        return vim_item
---      end
---    })
---  },
---  completion = {
---    completeopt = 'menu,menuone,noinsert',
---    keyword_length = 2,
---    trigger_characters = { '.', '::', '->' },
---  },
---}
---
----- Use buffer source for `/`.
---cmp.setup.cmdline('/', {
---  sources = {
---    { name = 'buffer' }
---  }
---})
---
----- Use cmdline & path source for ':'.
---cmp.setup.cmdline(':', {
---  sources = cmp.config.sources({
---    { name = 'path' }
---  }, {
---      { name = 'cmdline' }
---    })
---})
 
 cmp.setup({
   snippet = {

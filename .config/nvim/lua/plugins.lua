@@ -17,12 +17,16 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
     requires = {
       {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-live-grep-args.nvim'}
+      {'nvim-telescope/telescope-live-grep-args.nvim'},
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
     },
     config = function()
       require("telescope").load_extension("live_grep_args")
     end
   }
+
+  use 'skywind3000/asynctasks.vim'
+  use 'skywind3000/asyncrun.vim'
 
   -- Treesittetr
   use {
@@ -55,6 +59,20 @@ return require('packer').startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- Collection of configurations for built-in LSP client 
   
+  --use({
+  --  "glepnir/lspsaga.nvim",
+  --  opt = true,
+  --  branch = "main",
+  --  event = "LspAttach",
+  --  config = function()
+  --      require("lspsaga").setup({})
+  --  end,
+  --  requires = {
+  --      {"nvim-tree/nvim-web-devicons"},
+  --      --Please make sure you install markdown and markdown_inline parser
+  --      {"nvim-treesitter/nvim-treesitter"}
+  --  }
+  --})
   -- cmp
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-buffer" -- buffer completions
