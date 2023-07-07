@@ -31,3 +31,4 @@ lua require('plugins')
 lua require('keymaps')
 lua require('properties')
 
+set clipboard=unnamedplus

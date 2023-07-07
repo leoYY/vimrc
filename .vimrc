@@ -62,6 +62,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'puremourning/vimspector'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'github/copilot.vim'
+Plug 'wbthomason/packer.nvim'
 call plug#end()
 
 nnoremap <leader>jj :call common#GotoJump()<CR>

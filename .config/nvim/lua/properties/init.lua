@@ -206,7 +206,7 @@ vim.lsp.set_log_level("debug")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- lsp
-vim.diagnostic.config({virtual_text = false})
+vim.diagnostic.config({virtual_text = true})
 
 require'lspconfig'.clangd.setup{
   -- cmd = { "/opt/homebrew/opt/llvm@14/bin/clangd", "--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory" }
