@@ -22,3 +22,6 @@ vim.keymap.set('n', '<leader>gx', builtin.diagnostics, {})
 
 --- neovim-tree
 vim.keymap.set('n', '<c-c>', "<cmd>NvimTreeToggle<cr>")
+
+--- symbols-outline
+vim.keymap.set('n', '<c-d>', "<cmd>SymbolsOutline<cr>")

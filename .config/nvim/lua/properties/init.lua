@@ -220,3 +220,4 @@ require'lspconfig'.clangd.setup{
 require'fidget'.setup {}
 
 require'nvim-tree'.setup {}
+require("symbols-outline").setup()
