@@ -206,10 +206,25 @@ vim.lsp.set_log_level("debug")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- lsp
-vim.diagnostic.config({virtual_text = true})
+-- vim.diagnostic.config({virtual_text = true})
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	float = {
+		border = "single",
+		format = function(diagnostic)
+			return string.format(
+				"%s (%s) [%s]",
+				diagnostic.message,
+				diagnostic.source,
+				diagnostic.code or diagnostic.user_data.lsp.code
+			)
+		end,
+	},
+})
 
 require'lspconfig'.clangd.setup{
-  -- cmd = { "/opt/homebrew/opt/llvm@14/bin/clangd", "--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory" }
+  -- cmd = { "/opt/homebrew/opt/llvm@14/bin/clangd", "--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory" },
   capabilities = capabilities,
   --on_attach = function(client)
   --  client.resolved_capabilities.document_formatting = false

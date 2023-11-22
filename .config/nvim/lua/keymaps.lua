@@ -18,10 +18,12 @@ vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions, {})
 vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>gc', builtin.lsp_incoming_calls, {})
 vim.keymap.set('n', '<leader>gi', builtin.lsp_implementations, {})
-vim.keymap.set('n', '<leader>gx', builtin.diagnostics, {})
+---vim.keymap.set('n', '<leader>gx', builtin.diagnostics, {})
 
 --- neovim-tree
 vim.keymap.set('n', '<c-c>', "<cmd>NvimTreeToggle<cr>")
 
 --- symbols-outline
 vim.keymap.set('n', '<c-d>', "<cmd>SymbolsOutline<cr>")
+
+vim.keymap.set('n', '<leader>gx', vim.diagnostic.open_float)
