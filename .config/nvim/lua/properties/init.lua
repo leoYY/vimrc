@@ -204,6 +204,7 @@ vim.lsp.set_log_level("debug")
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
 
 -- lsp
 -- vim.diagnostic.config({virtual_text = true})

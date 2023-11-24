@@ -31,7 +31,6 @@ return require('packer').startup(function(use)
   -- Treesittetr
   use {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
   }
   use {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -86,7 +85,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/vim-vsnip'
   use 'rafamadriz/friendly-snippets'
 
-  use 'j-hui/fidget.nvim'
+  use { 'j-hui/fidget.nvim', tag = 'legacy',}
   -- Debugger                
   use "ravenxrz/DAPInstall.nvim" -- help us install several debuggers
   use "ravenxrz/nvim-dap" --
