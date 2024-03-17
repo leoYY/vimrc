@@ -14,6 +14,7 @@ vim.keymap.set('n', '<leader>fi', builtin.treesitter, {})
 vim.keymap.set('n', '<leader>fg', builtin.lsp_dynamic_workspace_symbols, {})
 
 vim.keymap.set('n', '<leader>fj', builtin.jumplist, {})
+vim.keymap.set('n', '<leader>fc', builtin.command_history, {})
 --- telescope lsp
 vim.keymap.set('n', '<leader>gt', builtin.lsp_type_definitions, {})
 vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions, {})
