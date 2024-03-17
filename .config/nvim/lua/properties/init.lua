@@ -76,6 +76,15 @@ local telescope = require('telescope').setup {
           }
         } 
     },
+    pickers = {
+      command_history = {
+        theme = "dropdown",
+        layout_config = {
+          vertical = { width = 0.5 }
+          -- other layout configuration here
+        },
+      },
+    }
 }
 
 require('telescope').load_extension('fzf')
