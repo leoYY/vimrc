@@ -25,8 +25,9 @@ vim.keymap.set('n', '<leader>gi', builtin.lsp_implementations, {})
 vim.keymap.set('n', '<leader>gx', builtin.diagnostics, {})
 
 --- telescope git 
-vim.keymap.set('n', '<leader>lgc', builtin.git_commits, {})
-vim.keymap.set('n', '<leader>lgs', builtin.git_status, {})
+vim.keymap.set('n', '<leader>lc', builtin.git_commits, {})
+vim.keymap.set('n', '<leader>lb', builtin.git_bcommits, {})
+vim.keymap.set('n', '<leader>ls', builtin.git_status, {})
 
 --- neovim-tree
 vim.keymap.set('n', '<c-c>', "<cmd>NvimTreeToggle<cr>")
