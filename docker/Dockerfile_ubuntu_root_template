@@ -1,0 +1,81 @@
+ARG BASE_IMAGE=ubuntu:latest
+
+FROM ${BASE_IMAGE}
+
+RUN apt update
+
+RUN apt-get install  -y zsh
+
+RUN apt-get install -y fonts-powerline exuberant-ctags
+
+RUN git config --global url.https://gh-proxy.com/https://github.com/.insteadOf https://github.com/
+
+RUN sh -c "$(curl -fsSL https://gh-proxy.com/raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+RUN mkdir ~/to_remove  \
+        && cd ~/to_remove \
+        && git clone https://gh-proxy.com/https://github.com/leoYY/vimrc \
+        && cp vimrc/zsh/.zsh_antigen vimrc/zsh/.zshrc ~/ \
+        && cp -rf vimrc ~/.vim \
+        && rm -rf ~/to_remove
+
+RUN mkdir -p .vim/zsh
+COPY antigen.zsh .vim/zsh/
+
+RUN git clone --depth 1 https://github.com/junegunn/fzf ~/.fzf && sed -i '2iset -x' ~/.fzf/install && ~/.fzf/install
+#RUN git clone --depth 1 https://gh-proxy.com/https://github.com/junegunn/fzf ~/.fzf && ~/.fzf/install
+
+RUN zsh -c "source ~/.zshrc"
+
+#COPY init_gitlab.sh ./
+
+#RUN echo "source ~/init_gitlab.sh" >> ./.bashrc
+
+RUN apt-get install -y btop
+
+RUN apt-get install -y python3.10-dev
+
+#RUN apt-get install -y neovim
+RUN cd /root/ && wget https://gh-proxy.com/https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && tar -xzf nvim-linux-x86_64.tar.gz && cd -
+
+RUN apt-get install -y pip
+
+RUN pip3 install pynvim
+
+RUN ln -s ~/.vim/.vimrc .vimrc
+
+#RUN sed -i 's/python3/python3.10/g' .vimrc
+
+#RUN sudo rm /usr/bin/python3 && sudo ln -s /usr/bin/python3.10 /usr/bin/python3
+
+RUN git clone --progress https://github.com/vim/vim.git
+#RUN git clone --progress https://gh-proxy.com/https://github.com/vim/vim.git
+
+RUN apt-get install -y libncurses-dev
+
+RUN rm /bin/vim
+
+RUN cd vim && git checkout v9.1.1060 \
+        && cd src && ./configure --with-features=huge --enable-python3interp --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu --enable-cscope --enable-multibyte --enable-fail-if-missing && make -j8 && make install
+
+RUN vim --version
+
+RUN cp ~/.vim/.vimrc ~/.vimrc
+
+RUN apt-get install clangd
+
+# ignore vim ret
+RUN vim -E -s -u "$HOME/.vimrc" +PlugInstall +qall || echo 0
+
+#RUN zsh -c "sed -i 's/xterm-256/putty-256/' ~/.zshrc"
+
+#RUN git clone https://gh-proxy.com/https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit
+
+# install packer
+RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+RUN zsh -c "ln -s ~/.vim/.config ~/.config"
+#
+#RUN nvim +PackerSync +qa
+
+CMD /bin/zsh
