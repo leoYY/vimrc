@@ -25,6 +25,8 @@ COPY antigen.zsh .vim/zsh/
 RUN git clone --depth 1 https://github.com/junegunn/fzf ~/.fzf && sed -i '2iset -x' ~/.fzf/install && ~/.fzf/install
 #RUN git clone --depth 1 https://gh-proxy.com/https://github.com/junegunn/fzf ~/.fzf && ~/.fzf/install
 
+RUN apt-get install ripgrep
+
 RUN zsh -c "source ~/.zshrc"
 
 #COPY init_gitlab.sh ./
