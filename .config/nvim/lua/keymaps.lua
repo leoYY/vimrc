@@ -12,6 +12,8 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fi', builtin.treesitter, {})
 vim.keymap.set('n', '<leader>fg', builtin.lsp_dynamic_workspace_symbols, {})
+vim.keymap.set('n', '<leader>fr', builtin.registers, {})
+vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
 
 vim.keymap.set('n', '<leader>fj', builtin.jumplist, {})
 vim.keymap.set('n', '<leader>fc', builtin.command_history, {})
