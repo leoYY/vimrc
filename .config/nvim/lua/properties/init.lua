@@ -1,7 +1,7 @@
 -- nvim-treesitter configs
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "cpp", "java" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "cpp", "java", "rust" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -23,7 +23,7 @@ require'nvim-treesitter.configs'.setup {
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = { "python", "rust" },
+    disable = {},
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
         local max_filesize = 100 * 1024 -- 100 KB
@@ -233,16 +233,19 @@ vim.diagnostic.config({
 	},
 })
 
-require'lspconfig'.clangd.setup{
-  -- cmd = { "/opt/homebrew/opt/llvm@14/bin/clangd", "--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory" },
-  capabilities = capabilities,
-  --on_attach = function(client)
-  --  client.resolved_capabilities.document_formatting = false
-  --  on_publish_diagnostics(client)
-  --end
-}
-
 require'fidget'.setup {}
 
 require'nvim-tree'.setup {}
 require("symbols-outline").setup()
+
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+require("mason-lspconfig").setup()
