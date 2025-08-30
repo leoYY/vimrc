@@ -102,4 +102,8 @@ return require('packer').startup(function(use)
   use "github/copilot.vim"
 
   use 'simrat39/symbols-outline.nvim'
+
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'simrat39/rust-tools.nvim'
 end)
